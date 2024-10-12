@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" sizes="192x192" href="4chan.png">
+	<title>TSS Server</title>
+	<link rel="stylesheet" href="https://oguzki.github.io/font-base/fonts.css">
+</head>
+
+<style>
+	* {
+		margin: 0px;
+		padding: 0px;
+		border: 0px;
+		outline: 0;
+	}
+
+	html,
+	body {
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		text-align: center;
+		background-color: #1A1A1D;
+		color: white;
+		flex-direction: column;
+		user-select: none;
+	}
+
+	main {
+		position: fixed;
+		z-index: 1;
+	}
+
+	h1 {
+		font-family: Righteous;
+	}
+
+	.unname {
+		font-family: PoiretOne;
+	}
+
+	a {
+		color: rgb(36, 173, 219);
+		text-decoration: none;
+		font-size: 20px;
+		transition: .7s;
+		white-space: nowrap;
+	}
+
+	mark {
+		color: black;
+		background-color: white;
+		padding: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: .3s;
+	}
+
+	mark:hover {
+		color: #1f0f16;
+		background-color: rgb(36, 173, 219);
+	}
+
+	mark:active {
+		color: #1f0f16;
+		background-color: #f467a2;
+	}
+
+	.links {
+		margin-top: 10px;
+		font-family: Poppins-Regular;
+	}
+
+	.links p {
+		font-size: 20px;
+		margin: 10px 0px;
+	}
+
+	button {
+		font-family: NotoEmoji;
+	}
+
+	a:hover {
+		color: #f467a2;
+	}
+
+	#notification-div {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: end;
+		position: fixed;
+	}
+	#notification {
+		color: black;
+		background-color: white;
+		font-family: Ubuntu-Regular;
+		padding: 5px;
+		border-radius: 5px;
+		margin-bottom: -35px;
+		transition: 1s;
+	}
+</style>
+
+<body>
+	<main>
+		<h1>TSS Server</h1>
+		<p class="unname">играли в креатив и проиграли</p>
+		<div class="links">
+			<p>TeamSpeak: <mark onclick="copy(event)" value="tss-server">tss-server</mark></p>
+			<p style="margin: 5px;">Telegram: <a href="https://t.me/tss_server">https://t.me/tss_server</a></p>
+			<p>Tron: <mark onclick="copy(event)">TEaPoLRvr...</mark></p>
+		</div>
+	</main>
+	<div id="notification-div">
+		<p id="notification">---</p>
+	</div>
+</body>
+
+<script>
+	const notification = document.getElementById("notification");
+	switch (window.navigator.language) {
+		case "ru-RU":
+		case "ru":
+			notification.textContent = "скопировано";
+			break;
+		default:
+			notification.textContent = "copied";
+			break;
+	}
+	function copy(e) {
+		switch (e.target.textContent) {
+			case ("TEaPoLRvr..."):
+				var link = "TEaPoLRvrtuCnz7Cg2AR9b8pMxdh4vDdJr";
+				break;
+			case ("tss-server"):
+				var link = "tss-server";
+				break;
+		}
+		notification.style.marginBottom = "10px";
+		navigator.clipboard.writeText(link);
+		setTimeout(copy_reset, 3000);
+	} 
+	function copy_reset() {
+		notification.style.marginBottom = "-35px";
+	}
+</script>
+
+</html>

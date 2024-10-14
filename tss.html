@@ -39,7 +39,7 @@
 		font-family: Righteous;
 	}
 
-	.unname {
+	#unname {
 		font-family: PoiretOne;
 	}
 
@@ -51,7 +51,7 @@
 		white-space: nowrap;
 	}
 
-	mark {
+	.copy {
 		color: black;
 		background-color: white;
 		padding: 5px;
@@ -60,24 +60,29 @@
 		transition: .3s;
 	}
 
-	mark:hover {
+	.copy:hover {
 		color: #1f0f16;
 		background-color: rgb(36, 173, 219);
 	}
 
-	mark:active {
+	.copy:active {
 		color: #1f0f16;
 		background-color: #f467a2;
 	}
 
+	#or {
+		background-color: #ffffff00;
+		color: white;
+	}
+
 	.links {
-		margin-top: 10px;
-		font-family: Poppins-Regular;
+		margin-top: 15px;
+		font-family: Ubuntu-Regular;
 	}
 
 	.links p {
 		font-size: 20px;
-		margin: 10px 0px;
+		margin: 15px 0px;
 	}
 
 	button {
@@ -110,10 +115,10 @@
 <body>
 	<main>
 		<h1>TSS Server</h1>
-		<p class="unname">играли в креатив и проиграли</p>
+		<p id="unname">роскомнадзор играл в безопасность и проиграл</p>
 		<div class="links">
-			<p>TeamSpeak: <mark onclick="copy(event)" value="tss-server">tss-server</mark></p>
-			<p>Tron: <mark onclick="copy(event)">TEaPoLRvr...</mark></p>
+			<p>TeamSpeak: <mark onclick="copy(event)" class="copy">tss-server</mark><mark id="or">-</mark><mark onclick="copy(event)" class="copy" id="toilet">туалет</mark></p>
+			<p>Tron: <mark onclick="copy(event)" class="copy">TEaPoLRvr...</mark></p>
 		</div>
 	</main>
 	<div id="notification-div">
@@ -123,13 +128,23 @@
 
 <script>
 	const notification = document.getElementById("notification");
+	const or = document.getElementById("or");
+	const toilet = document.getElementById("toilet");
+	const unname = document.getElementById("unname");
+	var test = "en";
 	switch (window.navigator.language) {
 		case "ru-RU":
 		case "ru":
 			notification.textContent = "скопировано";
+			or.textContent = " или ";
+			toilet.textContent = "туалет";
+			unname.textContent = "роскомнадзор играл в безопасность и проиграл";
 			break;
 		default:
 			notification.textContent = "copied";
+			or.textContent = " or ";
+			toilet.textContent = "toilet";
+			unname.textContent = "roskomnadzor played security and lost"
 			break;
 	}
 	function copy(e) {
@@ -139,6 +154,12 @@
 				break;
 			case ("tss-server"):
 				var link = "tss-server";
+				break;
+			case ("туалет"):
+				var link = "туалет";
+				break;
+			case ("toilet"):
+				var link = "toilet";
 				break;
 		}
 		notification.style.marginBottom = "10px";

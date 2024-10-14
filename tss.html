@@ -43,36 +43,55 @@
 		font-family: PoiretOne;
 	}
 
-	a {
-		color: rgb(36, 173, 219);
-		text-decoration: none;
-		font-size: 20px;
-		transition: .7s;
-		white-space: nowrap;
-	}
-
-	.copy {
-		color: black;
-		background-color: white;
-		padding: 5px;
-		border-radius: 5px;
-		cursor: pointer;
-		transition: .3s;
-	}
-
-	.copy:hover {
-		color: #1f0f16;
-		background-color: rgb(36, 173, 219);
-	}
-
-	.copy:active {
-		color: #1f0f16;
-		background-color: #f467a2;
-	}
-
 	#or {
 		background-color: #ffffff00;
 		color: white;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.tron {
+		background-color: #f00c24;
+		color: white;
+		padding: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: .5s;
+	}
+
+	.telegram {
+		background-color: rgb(36, 161, 222);
+		color: white;
+		padding: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: .5s;
+	}
+
+	.teamspeak {
+		background-color: #e0e0e0;
+		color: black;
+		padding: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: .5s;
+	}
+
+	.tron:hover {
+		background-color: white;
+		color: #f00c24;
+	}
+
+	.telegram:hover {
+		color: rgb(36, 161, 222);
+		background-color: white;
+	}
+
+	.teamspeak:hover {
+		color: #e0e0e0;
+		background-color:  black;
 	}
 
 	.links {
@@ -89,10 +108,6 @@
 		font-family: NotoEmoji;
 	}
 
-	a:hover {
-		color: #f467a2;
-	}
-
 	#notification-div {
 		width: 100%;
 		height: 100%;
@@ -101,6 +116,7 @@
 		align-items: end;
 		position: fixed;
 	}
+
 	#notification {
 		color: black;
 		background-color: white;
@@ -117,8 +133,10 @@
 		<h1>TSS Server</h1>
 		<p id="unname">роскомнадзор играл в безопасность и проиграл</p>
 		<div class="links">
-			<p>TeamSpeak: <mark onclick="copy(event)" class="copy">tss-server</mark><mark id="or">-</mark><mark onclick="copy(event)" class="copy" id="toilet">туалет</mark></p>
-			<p>Tron: <mark onclick="copy(event)" class="copy">TEaPoLRvr...</mark></p>
+			<p>TeamSpeak Server: <mark onclick="copy(event)" class="teamspeak">tss-server</mark><mark
+					id="or">-</mark><mark onclick="copy(event)" class="teamspeak" id="barrel">бочка</mark></p>
+			<p>Telegram Chat: <a href="https://t.me/tss_server" target="_blank"><mark class="telegram">@tss_server</mark></a></p>
+			<p>Tron Wallet: <mark onclick="copy(event)" class="tron">TEaPoLRvr...</mark></p>
 		</div>
 	</main>
 	<div id="notification-div">
@@ -129,7 +147,7 @@
 <script>
 	const notification = document.getElementById("notification");
 	const or = document.getElementById("or");
-	const toilet = document.getElementById("toilet");
+	const barrel = document.getElementById("barrel");
 	const unname = document.getElementById("unname");
 	var test = "en";
 	switch (window.navigator.language) {
@@ -137,13 +155,13 @@
 		case "ru":
 			notification.textContent = "скопировано";
 			or.textContent = " или ";
-			toilet.textContent = "туалет";
+			barrel.textContent = "бочка";
 			unname.textContent = "роскомнадзор играл в безопасность и проиграл";
 			break;
 		default:
 			notification.textContent = "copied";
 			or.textContent = " or ";
-			toilet.textContent = "toilet";
+			barrel.textContent = "barrel";
 			unname.textContent = "roskomnadzor played security and lost"
 			break;
 	}
@@ -155,17 +173,17 @@
 			case ("tss-server"):
 				var link = "tss-server";
 				break;
-			case ("туалет"):
-				var link = "туалет";
+			case ("бочка"):
+				var link = "бочка";
 				break;
-			case ("toilet"):
-				var link = "toilet";
+			case ("barrel"):
+				var link = "barrel";
 				break;
 		}
 		notification.style.marginBottom = "10px";
 		navigator.clipboard.writeText(link);
 		setTimeout(copy_reset, 3000);
-	} 
+	}
 	function copy_reset() {
 		notification.style.marginBottom = "-35px";
 	}

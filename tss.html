@@ -91,7 +91,7 @@
 
 	.teamspeak:hover {
 		color: #e0e0e0;
-		background-color:  black;
+		background-color: black;
 	}
 
 	.links {
@@ -102,10 +102,6 @@
 	.links p {
 		font-size: 20px;
 		margin: 15px 0px;
-	}
-
-	button {
-		font-family: NotoEmoji;
 	}
 
 	#notification-div {
@@ -120,11 +116,45 @@
 	#notification {
 		color: black;
 		background-color: white;
+		border: 3px solid black;
 		font-family: Ubuntu-Regular;
 		padding: 5px;
 		border-radius: 5px;
 		margin-bottom: -35px;
 		transition: 1s;
+	}
+
+	#date_div {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: end;
+		position: fixed;
+	}
+
+	#date_div p {
+		font-family: ubuntu-regular;
+		color: black;
+		padding: 1px 5px;
+	}
+
+	#note_stylish {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: #FFFFFF;
+		border-radius: 5px 5px 0px 0px;
+		border-bottom: 1px solid black;
+	}
+
+	#date_exp {
+		margin-bottom: 15px;
+		width: 200px;
+		height: 100px;
+		background-color: #F9F9F9;
+		font-family: Ubuntu-Regular;
+		border-radius: 5px;
 	}
 </style>
 
@@ -133,12 +163,23 @@
 		<h1>TSS Server</h1>
 		<p id="unname">роскомнадзор играл в безопасность и проиграл</p>
 		<div class="links">
-			<p>TeamSpeak: <mark onclick="copy(event)" class="teamspeak">tss-server</mark><mark
-					id="or">-</mark><mark onclick="copy(event)" class="teamspeak" id="barrel">бочка</mark></p>
-			<p>Telegram: <a href="https://t.me/tss_server" target="_blank"><mark class="telegram">@tss_server</mark></a></p>
+			<p>TeamSpeak: <mark onclick="copy(event)" class="teamspeak">tss-server</mark><mark id="or">-</mark><mark
+					onclick="copy(event)" class="teamspeak" id="barrel">бочка</mark></p>
 			<p>Tron Wallet: <mark onclick="copy(event)" class="tron">TEaPoLRvr...</mark></p>
 		</div>
 	</main>
+	<div id="date_div">
+		<div id="date_exp">
+			<div id="note_stylish">
+				<p id="notepad">---</p>
+				<p style="font-family: NotoColorEmoji; font-size: 10px;">❌</p>
+			</div>
+			<div style="text-align: center; margin-top: 15px;">
+				<p id="date_info">---</p>
+				<p id="date">---</p>
+			</div>
+		</div>
+	</div>
 	<div id="notification-div">
 		<p id="notification">---</p>
 	</div>
@@ -149,6 +190,9 @@
 	const or = document.getElementById("or");
 	const barrel = document.getElementById("barrel");
 	const unname = document.getElementById("unname");
+	const date_info = document.getElementById("date_info");
+	const date = document.getElementById("date");
+	const notepad = document.getElementById("notepad");
 	var test = "en";
 	switch (window.navigator.language) {
 		case "ru-RU":
@@ -157,32 +201,50 @@
 			or.textContent = " или ";
 			barrel.textContent = "бочка";
 			unname.textContent = "роскомнадзор играл в безопасность и проиграл";
+			date_info.textContent = "сервер истекает:";
+			date.textContent = "8 декабря 2024";
+			notepad.textContent = "Блокнот";
 			break;
 		default:
 			notification.textContent = "copied";
 			or.textContent = " or ";
 			barrel.textContent = "barrel";
-			unname.textContent = "roskomnadzor played security and lost"
+			unname.textContent = "roskomnadzor played security and lost";
+			date_info.textContent = "server expires:";
+			date.textContent = "December 8, 2024";
+			notepad.textContent = "Notepad";
 			break;
 	}
 	function copy(e) {
 		switch (e.target.textContent) {
 			case ("TEaPoLRvr..."):
 				var link = "TEaPoLRvrtuCnz7Cg2AR9b8pMxdh4vDdJr";
+				notification.style.backgroundColor = "#f00c24";
+				notification.style.color = "white";
+				notification.style.border = "3px solid white";
 				break;
 			case ("tss-server"):
 				var link = "tss-server";
+				notification.style.backgroundColor = "#e0e0e0";
+				notification.style.color = "black";
+				notification.style.border = "3px solid black";
 				break;
 			case ("бочка"):
 				var link = "бочка";
+				notification.style.backgroundColor = "#e0e0e0";
+				notification.style.color = "black";
+				notification.style.border = "3px solid black";
 				break;
 			case ("barrel"):
 				var link = "barrel";
+				notification.style.backgroundColor = "#e0e0e0";
+				notification.style.color = "black";
+				notification.style.border = "3px solid black";
 				break;
 		}
-		notification.style.marginBottom = "10px";
+		notification.style.marginBottom = "40px";
 		navigator.clipboard.writeText(link);
-		setTimeout(copy_reset, 3000);
+		setTimeout(copy_reset, 2600);
 	}
 	function copy_reset() {
 		notification.style.marginBottom = "-35px";
